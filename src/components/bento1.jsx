@@ -213,7 +213,7 @@ const Page3 = () => {
                 <div className="h-10 w-10 z-50 absolute  bg-black rounded-full"></div>
               </div>
 
-              {[...Array(20)].map((_, index) => (
+              {[...Array(10)].map((_, index) => (
                 <div
                   key={index}
                   className="h-2 w-2 bg-black rounded-full ball shadow-xl z-10 absolute"
