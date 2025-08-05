@@ -131,6 +131,9 @@ const Page3 = () => {
 
   return (
     <div className=" overflow-hidden">
+      <div className="h-[70vh] flex justify-center items-center text-3xl">
+        Xicor
+      </div>
       <div
         ref={container}
         className="overflow-hidden h-[100vh] max-md:h-full flex justify-center items-center text-white max-md:p-4"
