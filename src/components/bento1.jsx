@@ -120,9 +120,9 @@ const Page3 = () => {
           const progress = this.progress(); // 'this' refers to the GSAP tween
           console.log(progress);
           if (progress > 0.5) {
-            ball.style.backgroundColor = "red";
-          } else {
             ball.style.backgroundColor = "black";
+          } else {
+            ball.style.backgroundColor = "white";
           }
         },
       });
@@ -131,52 +131,6 @@ const Page3 = () => {
 
   return (
     <div className=" overflow-hidden">
-      <div className=" h-screen w-full     flex justify-center items-center">
-        <div className="h-[70vh] w-full bg-white flex justify-center items-center text-3xl ">
-          <svg
-            width="1920"
-            height="918"
-            viewBox="0 0 1920 918"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M-163 130.5C183.5 459.5 810.5 434.5 947.5 434.5C1084.5 434.5 1758 472 2054.5 183"
-              stroke="#C3C3C3"
-              className="path"
-            />
-            <path
-              d="M-149 787.592C197.5 458.592 824.5 483.592 961.5 483.592C1098.5 483.592 1772 446.092 2068.5 735.092"
-              stroke="#C3C3C3"
-              className="path"
-            />
-            <path
-              d="M-28.5 1C4 367 774.5 402 911.5 402C1048.5 402 1927.5 402 1947.5 1"
-              stroke="#C3C3C3"
-              className="path"
-            />
-            <path
-              d="M-14.5 917.092C18 551.092 788.5 516.092 925.5 516.092C1062.5 516.092 1941.5 516.092 1961.5 917.092"
-              stroke="#C3C3C3"
-              className="path"
-            />
-            <path
-              d="M-252.5 422C338 447 828.5 462 965.5 462C1102.5 462 1541 462 2084.5 462"
-              stroke="#C3C3C3"
-              className="path"
-            />
-          </svg>
-        </div>
-        <div className="h-40 w-40 z-50  absolute   bg-black rounded-full"></div>
-      </div>
-
-      {[...Array(20)].map((_, index) => (
-        <div
-          key={index}
-          className="h-5 w-5 bg-black rounded-full ball shadow-xl "
-        ></div>
-      ))}
-
       <div
         ref={container}
         className="overflow-hidden h-[100vh] max-md:h-full flex justify-center items-center text-white max-md:p-4"
@@ -217,7 +171,53 @@ const Page3 = () => {
                 className="absolute bottom-0 left-0 right-0 h-1 rounded-xl bg-blue-100 "
                 style={{ transform: `scaleX(${scroll})` }}
               ></div>
-              <div className="text-sm text-gray-300">
+              <div className=" h-full w-full  absolute    flex justify-center items-center z-20">
+                <div className=" w-full   flex justify-center items-center text-3xl ">
+                  <svg
+                    width="1920"
+                    height="918"
+                    viewBox="0 0 1920 918"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M-163 130.5C183.5 459.5 810.5 434.5 947.5 434.5C1084.5 434.5 1758 472 2054.5 183"
+                      stroke="#C3C3C3"
+                      className="path"
+                    />
+                    <path
+                      d="M-149 787.592C197.5 458.592 824.5 483.592 961.5 483.592C1098.5 483.592 1772 446.092 2068.5 735.092"
+                      stroke="#C3C3C3"
+                      className="path"
+                    />
+                    <path
+                      d="M-28.5 1C4 367 774.5 402 911.5 402C1048.5 402 1927.5 402 1947.5 1"
+                      stroke="#C3C3C3"
+                      className="path"
+                    />
+                    <path
+                      d="M-14.5 917.092C18 551.092 788.5 516.092 925.5 516.092C1062.5 516.092 1941.5 516.092 1961.5 917.092"
+                      stroke="#C3C3C3"
+                      className="path"
+                    />
+                    <path
+                      d="M-252.5 422C338 447 828.5 462 965.5 462C1102.5 462 1541 462 2084.5 462"
+                      stroke="#C3C3C3"
+                      className="path"
+                    />
+                  </svg>
+                </div>
+                <div className="h-10 w-10 z-50 absolute  bg-black rounded-full"></div>
+              </div>
+
+              {[...Array(20)].map((_, index) => (
+                <div
+                  key={index}
+                  className="h-2 w-2 bg-black rounded-full ball shadow-xl z-10 absolute"
+                ></div>
+              ))}
+
+              <div className="text-sm text-gray-300 z-30">
                 {Math.round(scroll * 100) < 10 ? (
                   <span className=" text-green-300">
                     Welcome 0{Math.round(scroll * 100)}%
