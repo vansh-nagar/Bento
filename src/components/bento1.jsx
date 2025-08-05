@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
 const catData = [
   {
@@ -38,14 +39,13 @@ const catData = [
 ];
 
 const Page3 = () => {
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.registerPlugin(DrawSVGPlugin);
-
+  gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, MotionPathPlugin);
   const container = useRef(null);
   const overlay = useRef(null);
   const progressBar = useRef(null);
   const svg = useRef(null);
   const [scroll, setScroll] = useState(0);
+  const ball = useRef(null);
 
   const colorClass =
     "bg-[#282828] border border-[#454545] rounded-xl card overflow-hidden";
@@ -97,31 +97,85 @@ const Page3 = () => {
   }, []);
 
   useGSAP(() => {
-    gsap.from(svg.current, {
-      drawSVG: "0%",
-      duration: 3,
-      delay: 1,
+    const paths = gsap.utils.toArray(".path");
+
+    const balls = gsap.utils.toArray(".ball");
+
+    gsap.set(balls, { xPercent: -50, yPercent: -50 });
+
+    balls.forEach((ball) => {
+      const randomPath = paths[Math.floor(Math.random() * paths.length)];
+
+      gsap.to(ball, {
+        duration: 10,
+        delay: Math.random() * 20,
+        repeat: -1,
+        ease: "none",
+        motionPath: {
+          path: randomPath,
+          align: randomPath,
+          autoRotate: false,
+        },
+        onUpdate: function () {
+          const progress = this.progress(); // 'this' refers to the GSAP tween
+          console.log(progress);
+          if (progress > 0.5) {
+            ball.style.backgroundColor = "red";
+          } else {
+            ball.style.backgroundColor = "black";
+          }
+        },
+      });
     });
   });
 
   return (
-    <div>
-      <div className="h-[70vh] w-full bg-white flex justify-center items-center text-3xl">
-        <svg
-          width="974"
-          height="371"
-          viewBox="0 0 974 371"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4 325.81C79 302.309 245.978 108.328 226.5 42.8096C213.568 -0.690468 174.5 5.3095 160.5 70.8097C151.617 112.371 123 329.31 123 338.31C123 358.81 126.5 228.31 160.5 195.81C194.5 163.31 223 153.81 245 183.81C267 213.81 223 283.81 245 316.31C267 348.81 337.5 332.31 365.5 316.31C393.5 300.31 436.476 282.31 448 221.81C452 200.81 442.5 173.31 408.5 171.31C374.5 169.31 345 207.31 345 249.81C345 297.81 396 338.31 433.5 338.31C453.5 338.31 545 320.31 591 221.81C637 123.31 639 74.0126 639 46.8096C639 18.8096 609 5.80956 585.5 26.8096C560.148 49.465 524.5 174.606 530.5 235.81C536.5 297.013 563 325.81 591 338.31C639 359.738 696.374 324.073 728.5 282.31C753.5 249.81 816.5 119.31 806 46.8096C799.289 0.474285 767.5 7.80958 745.5 32.8095C723.5 57.8094 678.868 161.31 697.5 249.81C711.5 316.31 740 338.31 774 338.31C785.5 340.937 844.6 340.052 881 301.5C926.5 253.31 939.5 208.119 905.5 187.31C871.5 166.5 847.672 185.858 834 195.81C820.328 205.761 797 266.448 806 301.5C815 336.552 836.269 357.5 890.5 357.5C922 357.5 944.88 320.541 951 301.5C960 273.5 974 215.19 928.5 205"
-            stroke="#A7A7A7"
-            stroke-width="26"
-            ref={svg}
-          />
-        </svg>
+    <div className=" overflow-hidden">
+      <div className=" h-screen w-full     flex justify-center items-center">
+        <div className="h-[70vh] w-full bg-white flex justify-center items-center text-3xl ">
+          <svg
+            width="1920"
+            height="918"
+            viewBox="0 0 1920 918"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M-163 130.5C183.5 459.5 810.5 434.5 947.5 434.5C1084.5 434.5 1758 472 2054.5 183"
+              stroke="#C3C3C3"
+              className="path"
+            />
+            <path
+              d="M-149 787.592C197.5 458.592 824.5 483.592 961.5 483.592C1098.5 483.592 1772 446.092 2068.5 735.092"
+              stroke="#C3C3C3"
+              className="path"
+            />
+            <path
+              d="M-28.5 1C4 367 774.5 402 911.5 402C1048.5 402 1927.5 402 1947.5 1"
+              stroke="#C3C3C3"
+              className="path"
+            />
+            <path
+              d="M-14.5 917.092C18 551.092 788.5 516.092 925.5 516.092C1062.5 516.092 1941.5 516.092 1961.5 917.092"
+              stroke="#C3C3C3"
+              className="path"
+            />
+            <path
+              d="M-252.5 422C338 447 828.5 462 965.5 462C1102.5 462 1541 462 2084.5 462"
+              stroke="#C3C3C3"
+              className="path"
+            />
+          </svg>
+        </div>
+        <div className="h-40 w-40 z-50  absolute   bg-black rounded-full"></div>
       </div>
+
+      {[...Array(20)].map((_, index) => (
+        <div
+          key={index}
+          className="h-5 w-5 bg-black rounded-full ball shadow-xl "
+        ></div>
+      ))}
 
       <div
         ref={container}
