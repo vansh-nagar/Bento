@@ -46,6 +46,7 @@ const Page3 = () => {
   const svg = useRef(null);
   const [scroll, setScroll] = useState(0);
   const ball = useRef(null);
+  const beam = useRef(null);
 
   const colorClass =
     "bg-[#282828] border border-[#454545] rounded-xl card overflow-hidden";
@@ -129,10 +130,43 @@ const Page3 = () => {
     });
   });
 
+  useGSAP(() => {
+    const path = beam.current;
+    const length = path.getTotalLength();
+
+    gsap.set(path, {
+      strokeDasharray: `${length / 5}, ${length}`,
+      strokeDashoffset: 0,
+    });
+
+    gsap.to(path, {
+      strokeDashoffset: length,
+      duration: 10,
+      repeat: -1,
+      ease: "linear",
+    });
+  });
+
   return (
     <div className=" overflow-hidden">
-      <div className="h-[70vh] flex justify-center items-center text-3xl">
-        Xicor
+      <div className="h-[70vh] flex justify-center items-center text-3xl ">
+        <div className=" absolute">Xicor</div>
+
+        <svg
+          width="2383"
+          height="560"
+          viewBox="0 0 2383 560"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-auto drop-shadow-[0_0_10px_#00ffff]"
+        >
+          <path
+            d="M2383 462.503C2338 462.503 2263 425.003 2108 325.003C1953 225.003 1834.93 337.739 1798 407.503C1730.5 535.003 1680.5 610.5 1593 517.503C1543.56 464.953 1523 382.503 1480.5 347.503C1438 312.503 1425.5 487.503 1415.5 535.003C1405.5 582.503 1365.5 227.503 1393 117.503C1420.5 7.5033 1460.5 245.003 1438 347.503C1415.5 450.003 1263 407.503 1203 462.503C1143 517.503 1263 500.003 1305.5 487.503C1348 475.003 1230.5 335.003 1243 285.003C1255.5 235.003 1323 327.503 1243 407.503C1163 487.503 1133 535.003 1133 407.503C1133 305.503 1133 348.337 1133 382.503C1132.17 365.837 1107 351.003 1013 425.003C895.5 517.503 963 557.503 960.5 347.503C958 137.503 1083 407.503 893 500.003C703 592.503 699.722 367.503 778 347.503C856.278 327.503 918 512.503 755.5 517.503C593 522.503 723 302.503 728 347.503C733 392.503 613 545.003 563 535.003C513 525.003 395.5 87.5033 453 27.5033C499 -20.4967 545.5 7.50328 563 27.5033C583 70.8366 551 207.503 263 407.503C217.167 442.503 100.5 510.003 0.5 500.003"
+            stroke="black"
+            stroke-width="2"
+            ref={beam}
+          />
+        </svg>
       </div>
       <div
         ref={container}
@@ -223,7 +257,7 @@ const Page3 = () => {
               <div className="text-sm text-gray-300 z-30">
                 {Math.round(scroll * 100) < 10 ? (
                   <span className=" text-green-300">
-                    Welcome 0{Math.round(scroll * 100)}%
+                    Welcome {Math.round(scroll * 100)}%
                   </span>
                 ) : Math.round(scroll * 100) > 90 ? (
                   <span className=" text-red-500">
