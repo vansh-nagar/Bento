@@ -291,7 +291,7 @@ const Page3 = () => {
             style={{ gridTemplateRows: "calc(40% - 4px) calc(60% - 4px)" }}
           >
             <div className={`${colorClass} flex  flex-col`}>
-              <div className="w-full h-[12vw] overflow-hidden">
+              <div className="w-full h-[12vw] max-sm:h-[30vh] overflow-hidden">
                 <img
                   src="https://i.pinimg.com/736x/f0/45/5a/f0455a16e8db921d07e098ae8dc7cca1.jpg"
                   alt=""
