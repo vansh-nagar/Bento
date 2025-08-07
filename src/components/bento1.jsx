@@ -135,12 +135,12 @@ const Page3 = () => {
     const length = path.getTotalLength();
 
     gsap.set(path, {
-      strokeDasharray: `${length / 5}, ${length}`,
+      strokeDasharray: `${length / 10}, ${length}`,
       strokeDashoffset: 0,
     });
 
     gsap.to(path, {
-      strokeDashoffset: length,
+      strokeDashoffset: -length,
       duration: 10,
       repeat: -1,
       ease: "linear",
@@ -153,15 +153,14 @@ const Page3 = () => {
         <div className=" absolute">Xicor</div>
 
         <svg
-          width="2383"
-          height="560"
-          viewBox="0 0 2383 560"
+          width="2088"
+          height="593"
+          viewBox="0 0 2088 593"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-auto drop-shadow-[0_0_10px_#00ffff]"
         >
           <path
-            d="M2383 462.503C2338 462.503 2263 425.003 2108 325.003C1953 225.003 1834.93 337.739 1798 407.503C1730.5 535.003 1680.5 610.5 1593 517.503C1543.56 464.953 1523 382.503 1480.5 347.503C1438 312.503 1425.5 487.503 1415.5 535.003C1405.5 582.503 1365.5 227.503 1393 117.503C1420.5 7.5033 1460.5 245.003 1438 347.503C1415.5 450.003 1263 407.503 1203 462.503C1143 517.503 1263 500.003 1305.5 487.503C1348 475.003 1230.5 335.003 1243 285.003C1255.5 235.003 1323 327.503 1243 407.503C1163 487.503 1133 535.003 1133 407.503C1133 305.503 1133 348.337 1133 382.503C1132.17 365.837 1107 351.003 1013 425.003C895.5 517.503 963 557.503 960.5 347.503C958 137.503 1083 407.503 893 500.003C703 592.503 699.722 367.503 778 347.503C856.278 327.503 918 512.503 755.5 517.503C593 522.503 723 302.503 728 347.503C733 392.503 613 545.003 563 535.003C513 525.003 395.5 87.5033 453 27.5033C499 -20.4967 545.5 7.50328 563 27.5033C583 70.8366 551 207.503 263 407.503C217.167 442.503 100.5 510.003 0.5 500.003"
+            d="M0.5 500.003C100.5 510.003 217.167 442.503 263 407.503C551 207.503 583 70.8366 563 27.5033C545.5 7.50328 499 -20.4967 453 27.5033C395.5 87.5033 513 525.003 563 535.003C613 545.003 733 392.503 728 347.503C723 302.503 593 522.503 755.5 517.503C918 512.503 856.278 327.503 778 347.503C699.722 367.503 703 592.503 893 500.003C1083 407.503 958 137.503 960.5 347.503C963 557.503 976 487.503 1021 432.5C1029.46 422.157 1104.18 335.5 1114.5 335.5C1138 335.5 1129.33 380.003 1133 407.503C1133 535.003 1163 487.503 1243 407.503C1323 327.503 1255.5 235.003 1243 285.003C1230.5 335.003 1348 475.003 1305.5 487.503C1263 500.003 1143 517.503 1203 462.503C1263 407.503 1415.5 450.003 1438 347.503C1460.5 245.003 1420.5 7.5033 1393 117.503C1365.5 227.503 1405.5 582.503 1415.5 535.003C1425.5 487.503 1438 312.503 1480.5 347.503C1523 382.503 1502 432.5 1593 517.503C1835 653.5 2000.2 603.503 2087 347.503"
             stroke="black"
             stroke-width="2"
             ref={beam}
@@ -291,15 +290,15 @@ const Page3 = () => {
             className="grid gap-2"
             style={{ gridTemplateRows: "calc(40% - 4px) calc(60% - 4px)" }}
           >
-            <div className={colorClass}>
-              <div className="w-full h-44 overflow-hidden">
+            <div className={`${colorClass} flex  flex-col`}>
+              <div className="w-full h-[12vw] overflow-hidden">
                 <img
                   src="https://i.pinimg.com/736x/f0/45/5a/f0455a16e8db921d07e098ae8dc7cca1.jpg"
                   alt=""
-                  className="object-cover h-full w-full hover:scale-105 transition-all duration-300"
+                  className="object-cover h-full  w-full hover:scale-105 transition-all duration-300"
                 />
               </div>
-              <div className="text-lg p-2">
+              <div className="text-lg p-2 ">
                 Integrate seamlessly with your existing app
                 <p className="text-xs text-gray-400">
                   Plug into your current workflow without changing your stack.
