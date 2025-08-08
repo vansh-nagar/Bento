@@ -5,7 +5,7 @@ import Gsap_prac from "./components/Gsap_prac";
 const App = () => {
   return (
     <div>
-      <Gsap_prac />
+      <Bento1 />
     </div>
   );
 };
